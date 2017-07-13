@@ -1,0 +1,9 @@
+body {
+    overflow-x: hidden;
+}
+.table>tbody>tr>td{
+    vertical-align: middle;
+}
+.pageWrap {
+    text-align: center;
+}
