@@ -7,3 +7,10 @@ body {
 .pageWrap {
     text-align: center;
 }
+.pageWrap>ul {
+    display: inline-block;
+}
+.pageWrap>ul>li {
+    float: left!important;
+    list-style: none;
+}
