@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>system-list</title>
     <link rel="stylesheet" href="src/styles/common/bootstrap.min.css">
+    <link rel="stylesheet" href="src/styles/common/dialog.css">
     <link rel="stylesheet" href="src/styles/list/list.css">
 </head>
 <body>
@@ -94,8 +95,8 @@
                     <td>成都市锦江区</td>
                     <td>随便写点字</td>
                     <td>
-                        <button class="btn btn-default" type="submit" data-toggle="modal" data-target="#myModal">编辑</button>
-                        <button class="btn btn-default" type="submit" data-toggle="modal" data-target="#myModal">删除</button>
+                        <button class="btn btn-default" type="submit">编辑</button>
+                        <button class="btn btn-default" type="submit">删除</button>
                     </td>
                 </tr>
                 <tr class="active">
@@ -145,7 +146,7 @@
         </div>
     </div>
     <!-- 弹窗 -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -161,12 +162,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- 弹窗 end-->
     <script src="src/js/libs/jquery.min.js"></script>
     <script src="src/js/libs/bootstrap.min.js"></script>
     <script src="src/js/libs/bootstrap-paginator.js"></script>
     <script src="src/js/widges/page.js"></script>
+    <script src="src/js/widges/dialog.js"></script>
     <script src="src/js/list.js"></script>
 </body>
 </html>
