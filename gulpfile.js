@@ -5,32 +5,27 @@ var url = require('url'),
 // 加载gulp插件
 var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
-    connect = require('gulp-connect');
+    connect = require('gulp-connect'),
+    proxy = require('http-proxy-middleware');
 
 //web服务器
 gulp.task('server',function(){
     connect.server({
-        middleware: function(connect, options) {
-        return [
-            function(req, res, next) {
-                var filepath = path.join(options.root, req.url);
-                if ('POSTPUTDELETE'.indexOf(req.method.toUpperCase()) > -1
-                    && fs.existsSync(filepath) && fs.statSync(filepath).isFile()) {
-
-                    //设置utf-8编码
-                    res.setHeader('Content-Type', 'text/javascript;charset=UTF-8');
-
-                    return res.end(fs.readFileSync(filepath));
-                }
-
-                return next();
-               }
-
-            ];
-        },
-        hostname: '127.0.0.1',
+        root: './',
         port: 8090,
-        livereload: true
+        livereload: true,
+        middleware: function(connect, opt) {
+            return [
+                proxy('/api',  {
+                    target: 'https://api.douban.com/',
+                    changeOrigin:true,
+                    pathRewrite: {
+                        '^/api': '/'
+                    }
+                })
+            ]
+        }
+
     });
 });
 

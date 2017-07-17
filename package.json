@@ -10,7 +10,11 @@
     "gulp": "^3.9.1",
     "jquery": "^3.2.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp-connect": "^5.0.0",
+    "gulp-livereload": "^3.8.1",
+    "http-proxy-middleware": "^0.17.4"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

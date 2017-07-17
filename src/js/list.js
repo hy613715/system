@@ -2,7 +2,7 @@ $(function(){
     var delBtns = $('.table tr td:last-child button:last-child');
     var editBtns = $('.table tr td:last-child button:first-child');
     var tbTrs = $('.table tr');
-    delBtns.bind('click',function(){
+    delBtns.on('click',function(){
         console.log($(this).parents('tr').index());
         var index = $(this).parents('tr').index();//获取当前点击按钮所在tr的索引值
         var d = dialog({
@@ -11,6 +11,7 @@ $(function(){
             okValue: '确定',
             ok: function () {
                 this.title('提交中…');
+                console.log(tbTrs[index])
                 tbTrs[index].remove();
                 // return false;
             },
@@ -32,5 +33,21 @@ $(function(){
             cancel: function () {}
         });
         d.show();
+    })
+    //search
+    var oSearch = $('#searchBtn'),
+        searchText = $('#searchText').val;
+    oSearch.click(function(){
+    debugger;
+        $.ajax({
+            url: '/api/v2/book/search',
+            type: 'GET',
+            data: {
+                q:searchText
+            },
+            success: function(res) {
+                console.log(res)
+            }
+        })
     })
 })
