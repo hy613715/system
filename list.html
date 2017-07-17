@@ -40,7 +40,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-left">
+                    <form class="navbar-form navbar-left" onsubmit="return false">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="搜索" id="searchText">
                         </div>
@@ -81,15 +81,15 @@
                 <li><a href="#">栏目一</a></li>
                 <li class="active">栏目二</li>
             </ol>
-            <table class="table table-hover">
+            <table class="table table-hover" id="bookTab">
                 <tr>
-                    <th width="50">姓名</th>
-                    <th width="100">电话</th>
-                    <th width="100">地址</th>
-                    <th width="150">备注</th>
-                    <th width="100">操作</th>
+                    <th width="50">书名</th>
+                    <th width="100">图片</th>
+                    <th width="100">作者</th>
+                    <th width="150">简介</th>
+                    <th width="100">价格</th>
                 </tr>
-                <tr class="active">
+                <!-- <tr class="active">
                     <td>张三111</td>
                     <td>13888888888</td>
                     <td>成都市锦江区</td>
@@ -98,47 +98,7 @@
                         <button class="btn btn-default" type="submit">编辑</button>
                         <button class="btn btn-default" type="submit">删除</button>
                     </td>
-                </tr>
-                <tr class="active">
-                    <td>张三222</td>
-                    <td>13888888888</td>
-                    <td>成都市锦江区</td>
-                    <td>随便写点字</td>
-                    <td>
-                        <button class="btn btn-default" type="submit">编辑</button>
-                        <button class="btn btn-default" type="submit">删除</button>
-                    </td>
-                </tr>
-                <tr class="active">
-                    <td>张三333</td>
-                    <td>13888888888</td>
-                    <td>成都市锦江区</td>
-                    <td>随便写点字</td>
-                    <td>
-                        <button class="btn btn-default" type="submit">编辑</button>
-                        <button class="btn btn-default" type="submit">删除</button>
-                    </td>
-                </tr>
-                <tr class="active">
-                    <td>张三444</td>
-                    <td>13888888888</td>
-                    <td>成都市锦江区</td>
-                    <td>随便写点字</td>
-                    <td>
-                        <button class="btn btn-default" type="submit">编辑</button>
-                        <button class="btn btn-default" type="submit">删除</button>
-                    </td>
-                </tr>
-                <tr class="active">
-                    <td>张三555</td>
-                    <td>13888888888</td>
-                    <td>成都市锦江区</td>
-                    <td>随便写点字</td>
-                    <td>
-                        <button class="btn btn-default" type="submit">编辑</button>
-                        <button class="btn btn-default" type="submit">删除</button>
-                    </td>
-                </tr>
+                </tr> -->
             </table>
             <div class="pageWrap">
                 <ul class="" id="pageWrap"></ul>

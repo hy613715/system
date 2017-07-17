@@ -35,10 +35,9 @@ $(function(){
         d.show();
     })
     //search
-    var oSearch = $('#searchBtn'),
-        searchText = $('#searchText').val;
+    var oSearch = $('#searchBtn');
     oSearch.click(function(){
-    debugger;
+        var searchText = $('#searchText').val();
         $.ajax({
             url: '/api/v2/book/search',
             type: 'GET',
@@ -46,7 +45,20 @@ $(function(){
                 q:searchText
             },
             success: function(res) {
-                console.log(res)
+                var booksInfo = [];
+                booksInfo = res.books;
+                var bookTab = $('#bookTab');
+                var singleBookInfo =
+                    '<tr>
+                        <td>' + booksInfo.title + '</td>
+                        <td>' + booksInfo.images.small + '</td>
+                        <td>' + booksInfo.author[0] + '</td>
+                        <td>' + booksInfo.summary + '</td>
+                        <td>' + booksInfo.price + '</td>
+                    </tr>';
+                for(var i=0;i<booksInfo.length;i++) {
+                    bookTab.append(singleBookInfo)
+                }
             }
         })
     })
