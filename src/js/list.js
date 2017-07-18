@@ -66,14 +66,10 @@ $(function(){
         };
 
         function getPager(totalPages,count,currentPage) {
-            debugger;
             var options = {
                 currentPage: currentPage,
                 totalPages: Math.ceil(totalPages/count),
-                numberOfPages: 10,
-                onPageClicked: function(event,originEvent,type,page){
-                    getList(1);
-                }
+                numberOfPages: 10
             }
         };
     })
