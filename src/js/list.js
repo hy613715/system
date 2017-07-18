@@ -34,47 +34,53 @@ $(function(){
         });
         d.show();
     })
+
     //search
     var oSearch = $('#searchBtn');
     oSearch.click(function(){
-        getList();
-        getPager();
-        function getList(currentPage) {
-            var searchText = $('#searchText').val();
-            var bookList = $('#bookList');
-            $.ajax({
-                url: '/api/v2/book/search',
-                type: 'GET',
-                data: {
-                    q: searchText,
-                    start: currentPage
-                },
-                success: function(res){
-                    dataList = res.books;
-                    var bookItem = '';
-                    for(var i=0;i<dataList.length;i++){
-                        var author = [];
-                        for(var j=0;j<dataList[i].author.length;j++){
-                            author += dataList[i].author[j];
-                        }
-                        bookItem += '<tr><td>' + dataList[i].title + '</td><td>' + author + '</td><td><img src="' + dataList[i].image + '"></td><td>' + dataList[i].summary + '</td><td>' + dataList[i].price + '</td></tr>';
-                    }
-                    bookList.append(bookItem);
-                    getPager(res.total,res.count,res.start);
-                }
-            })
-        };
-
-        function getPager(totalPages,count,currentPage) {
-            debugger;
-            var options = {
-                currentPage: currentPage,
-                totalPages: Math.ceil(totalPages/count),
-                numberOfPages: 10,
-                onPageClicked: function(event,originEvent,type,page){
-                    getList(1);
-                }
-            }
-        };
-    })
+        getList(1);
+    });
 })
+
+// 获取列表
+function getList(currentPage) {
+    var searchText = $('#searchText').val();
+    var bookList = $('#bookList');
+    $.ajax({
+        url: '/api/v2/book/search',
+        type: 'GET',
+        data: {
+            q: searchText,
+            start: currentPage
+        },
+        success: function(res){
+            dataList = res.books;
+            var bookItem = '';
+            for(var i=0;i<dataList.length;i++){
+                var author = [];
+                for(var j=0;j<dataList[i].author.length;j++){
+                    author += dataList[i].author[j];
+                }
+                bookItem += '<tr><td>' + dataList[i].title + '</td><td>' + author + '</td><td><img src="' + dataList[i].image + '"></td><td>' + dataList[i].summary + '</td><td>' + dataList[i].price + '</td></tr>';
+            }
+            bookList.append(bookItem);
+            getPager(res.total,res.count,res.start);
+        }
+    })
+}
+
+// 分页
+function getPager(totalPages,count,currentPage) {
+    debugger;
+    var options = {
+        currentPage: currentPage,
+        totalPages: Math.ceil(totalPages/count),
+        numberOfPages: 10,
+        onPageClicked: function(event,originEvent,type,page){
+            getList(page);
+        }
+    }
+
+    // 分页入口
+    $('#pageWrap').bootstrapPaginator(options);
+}
