@@ -37,29 +37,44 @@ $(function(){
     //search
     var oSearch = $('#searchBtn');
     oSearch.click(function(){
-        var searchText = $('#searchText').val();
-        $.ajax({
-            url: '/api/v2/book/search',
-            type: 'GET',
-            data: {
-                q:searchText
-            },
-            success: function(res) {
-                var booksInfo = [];
-                booksInfo = res.books;
-                var bookTab = $('#bookTab');
-                var singleBookInfo =
-                    '<tr>
-                        <td>' + booksInfo.title + '</td>
-                        <td>' + booksInfo.images.small + '</td>
-                        <td>' + booksInfo.author[0] + '</td>
-                        <td>' + booksInfo.summary + '</td>
-                        <td>' + booksInfo.price + '</td>
-                    </tr>';
-                for(var i=0;i<booksInfo.length;i++) {
-                    bookTab.append(singleBookInfo)
+        getList();
+        getPager();
+        function getList(currentPage) {
+            var searchText = $('#searchText').val();
+            var bookList = $('#bookList');
+            $.ajax({
+                url: '/api/v2/book/search',
+                type: 'GET',
+                data: {
+                    q: searchText,
+                    start: currentPage
+                },
+                success: function(res){
+                    dataList = res.books;
+                    var bookItem = '';
+                    for(var i=0;i<dataList.length;i++){
+                        var author = [];
+                        for(var j=0;j<dataList[i].author.length;j++){
+                            author += dataList[i].author[j];
+                        }
+                        bookItem += '<tr><td>' + dataList[i].title + '</td><td>' + author + '</td><td><img src="' + dataList[i].image + '"></td><td>' + dataList[i].summary + '</td><td>' + dataList[i].price + '</td></tr>';
+                    }
+                    bookList.append(bookItem);
+                    getPager(res.total,res.count,res.start);
+                }
+            })
+        };
+
+        function getPager(totalPages,count,currentPage) {
+            debugger;
+            var options = {
+                currentPage: currentPage,
+                totalPages: Math.ceil(totalPages/count),
+                numberOfPages: 10,
+                onPageClicked: function(event,originEvent,type,page){
+                    getList(1);
                 }
             }
-        })
+        };
     })
 })
